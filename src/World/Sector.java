@@ -10,6 +10,7 @@ public class Sector {
     private Integer x;
     private Integer y;
     Precipitation precipitation;
+    Trace trace;
     private byte sector_type;
 
     public Sector(Integer id, Integer x, Integer y) {
@@ -73,22 +74,26 @@ public class Sector {
 
     @java.lang.Override
     public String toString() {
-        String str="";
-        switch (this.getSector_type()) {
-            case EMPTY:
-                str = " . ";
-                break;                
-            case ROAD:
-                str = " + ";
-                break;
-            case BUILDING:
-                str = " # ";
-                break;
-            case LAND:
-                str = " ~ ";
-                break;
+        String out="";
+        if(trace!=null){
+            out += " " + trace + " ";
+        }else{
+            switch (this.getSector_type()) {
+                case EMPTY:
+                    out = " . ";
+                    break;                
+                case ROAD:
+                    out = " + ";
+                    break;
+                case BUILDING:
+                    out = " # ";
+                    break;
+                case LAND:
+                    out = " ~ ";
+                    break;
+            }
         }
-        return str;
+        return out;
     }
 
     public void info() {
