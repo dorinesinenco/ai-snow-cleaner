@@ -1,9 +1,10 @@
 import java.util.Random;
 
 public class Sector {
-    final byte ROAD=1;
-    final byte BUILDING=2;
-    final byte LAND=3;
+    final public byte EMPTY=0;
+    final public byte ROAD=1;
+    final public byte BUILDING=2;
+    final public byte LAND=3;
 
     private Integer id;
     private Integer x;
@@ -15,8 +16,7 @@ public class Sector {
         setId(id);
         setX(x);
         setY(y);
-        setPrecipitation();
-        setSector_type();
+        setSector_type(EMPTY);
     }
 
     //Getters and Setters
@@ -45,20 +45,8 @@ public class Sector {
         return sector_type;
     }
 
-    //randomly get Sector Type
-    public void setSector_type() {
-        int category = randInt(1, 3);
-        switch (category) {
-            case ROAD:
-                this.sector_type = ROAD;
-                break;
-            case BUILDING:
-                this.sector_type = BUILDING;
-                break;
-            case LAND:
-                this.sector_type = LAND;
-                break;
-        }
+    public void setSector_type(byte sector_type) {
+         this.sector_type = sector_type;
     }
 
     public Precipitation getPrecipitation() {
@@ -87,6 +75,9 @@ public class Sector {
     public String toString() {
         String str="";
         switch (this.getSector_type()) {
+            case EMPTY:
+                str = " . ";
+                break;                
             case ROAD:
                 str = " + ";
                 break;
@@ -94,7 +85,7 @@ public class Sector {
                 str = " # ";
                 break;
             case LAND:
-                str = " . ";
+                str = " ~ ";
                 break;
         }
         return str;
