@@ -67,13 +67,14 @@ public class Map {
 
     public void toStrings() {
         for(int i = 0;i < grid.size();i++){
+                ArrayList<Sector> row = grid.get(i);
                 for(int j = 0;j < grid.get(i).size();j++){
 
-                    if(grid.get(i).get(j).getType() == 1){
+                    if(row.get(j).getType() == 1){
                         System.out.print("\t+");
-                    }else if(grid.get(i).get(j).getType() == 2){
+                    }else if(row.get(j).getType() == 2){
                         System.out.print("\t.");
-                    }else if(grid.get(i).get(j).getType() == 3){
+                    }else if(row.get(j).getType() == 3){
                         System.out.print("\t#");
                     }else{
                         System.out.print("\t*");
