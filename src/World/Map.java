@@ -1,71 +1,56 @@
-package World;
-
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class Map {
 
-    final Float Scale = 1.0F;
     private Integer width;
     private Integer height;
-    private Double longitude = 0.0;
-    private Double latitude = 0.0;
+    private ArrayList<ArrayList<Sector>> grid;
 
-    public Map(Integer width,Integer height,Double longitude,Double latitude) {
-        setWidth(width);
-        setHeight(height);
-        setLongitude(longitude);
-        setLatitude(latitude);
+    public Map() {
+        setWidth();
+        setHeight();
+        setGrid();
     }
+
+    //Getters and Setters
 
     public Integer getWidth() {
         return width;
     }
-
-    public void setWidth(Integer width) {
-        this.width = width;
+    public void setWidth() {
+        this.width = 10;
     }
 
-    public Float getScale() {
-        return Scale;
-    }
     public Integer getHeight() {
         return height;
     }
-
-    public Double getLongitude() {
-        return longitude;
+    public void setHeight() {
+        this.height = 10;
     }
 
-    public void setLongitude(Double longitude) {
-        this.longitude = longitude;
+    public ArrayList<ArrayList<Sector>> getGrid() {
+        return grid;
     }
 
-    public void setHeight(Integer height) {
-        this.height = height;
-    }
-    public Double getLatitude() {
-        return latitude;
-    }
-
-    public void setLatitude(Double latitude) {
-        this.latitude = latitude;
-    }
-
-    private ArrayList<ArrayList <Sector>> grid;
-
-    public String toString(){
-        for (int r = 1;r <= height;r++){
-            for (int c = 1;c <= width;c++){
-                if (r == 1 || r == 10){
-                    System.out.print(" #");
-                }else if (c == 1 || c == 10){
-                    System.out.print(" #");
-                }else{
-                    System.out.print(" #");
-                }
+    //setting Grid!!
+    public void setGrid() {
+        ArrayList<ArrayList<Sector>> grid = new ArrayList<ArrayList<Sector>>();
+        for (int i=0; i<getHeight(); i++) {
+            ArrayList<Sector> arrayRow = new ArrayList<Sector>();
+            for (int j = 0; j < getWidth(); j++) {
+                Sector sector = new Sector(i + j + 2, j + 1, i + 1);
+                arrayRow.add(sector);
+                System.out.print(sector);
+            }
+            Iterator<Sector> iterator = arrayRow.iterator();
+            while (iterator.hasNext()){
+                Sector sect = iterator.next();
+                sect.toString();
             }
             System.out.println();
+            grid.add(arrayRow);
         }
-        return "";
+        this.grid = grid;
     }
 }
