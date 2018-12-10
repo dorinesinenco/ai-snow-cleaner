@@ -1,6 +1,7 @@
 public class Snow extends Precipitation {
 
     private String precipitation_name;
+    private Integer level; // mm
 
     public Snow() {
         super();
