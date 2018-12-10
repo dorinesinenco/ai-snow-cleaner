@@ -39,7 +39,6 @@ public class Map {
         return grid;
     }
 
-    //setting Grid!!
     public void initGrid() {
         ArrayList<ArrayList<Sector>> grid = new ArrayList<ArrayList<Sector>>();
         for (int i=0; i<getHeight(); i++) {
@@ -52,5 +51,11 @@ public class Map {
             grid.add(arrayRow);
         }
         this.grid = grid;
+    }
+    
+    @Override
+    public String toString(){
+        String out = "MAP";
+        return out;
     }
 }
