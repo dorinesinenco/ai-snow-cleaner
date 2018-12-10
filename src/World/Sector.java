@@ -99,4 +99,8 @@ public class Sector {
         }
         return str;
     }
+
+    public void info() {
+        System.out.println("x = " + getX() + ", y= " + getY());
+    }
 }
