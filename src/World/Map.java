@@ -55,7 +55,13 @@ public class Map {
     
     @Override
     public String toString(){
-        String out = "MAP";
+        String out = "MAP\n\n";
+        for(ArrayList<Sector> row: grid){
+            for(Sector sector: row){
+                out += sector;
+            }
+            out += "\n";
+        }    
         return out;
     }
 }
