@@ -20,6 +20,10 @@ public class Trace{
   }
   
   @Override 
-  
+  public String toString(){
+     String out = "";
+     // direction -> N - "^","v", "<", ">"
+     return out; 
+  }
 
 }
