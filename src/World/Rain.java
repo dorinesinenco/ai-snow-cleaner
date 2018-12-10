@@ -1,6 +1,7 @@
 public class Rain extends Precipitation {
 
     private String precipitation_name;
+    private Float volume; // l/m2
 
     public Rain() {
         super();
