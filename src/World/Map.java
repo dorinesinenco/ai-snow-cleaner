@@ -8,9 +8,9 @@ public class Map {
     private ArrayList<ArrayList<Sector>> grid;
 
     public Map() {
-        setWidth();
-        setHeight();
-        setGrid();
+        initWidth();
+        initHeight();
+        initGrid();
     }
 
     //Getters and Setters
@@ -18,15 +18,21 @@ public class Map {
     public Integer getWidth() {
         return width;
     }
-    public void setWidth() {
-        this.width = 10;
+    public void setWidth(Integer width) {
+        this.width = width;
+    }
+    public void initWidth() {
+        setWidth(10);
     }
 
     public Integer getHeight() {
         return height;
     }
-    public void setHeight() {
-        this.height = 10;
+    public void setHeight(Integer height) {
+        this.height = height;
+    }
+    public void initHeight() {
+        setHeight(10);
     }
 
     public ArrayList<ArrayList<Sector>> getGrid() {
@@ -34,22 +40,15 @@ public class Map {
     }
 
     //setting Grid!!
-    public void setGrid() {
+    public void initGrid() {
         ArrayList<ArrayList<Sector>> grid = new ArrayList<ArrayList<Sector>>();
         for (int i=0; i<getHeight(); i++) {
             ArrayList<Sector> arrayRow = new ArrayList<Sector>();
             for (int j = 0; j < getWidth(); j++) {
+                // sector!!!
                 Sector sector = new Sector(i + j + 2, j + 1, i + 1);
                 arrayRow.add(sector);
-                System.out.print(sector);
-                //sector.info();
             }
-            Iterator<Sector> iterator = arrayRow.iterator();
-            while (iterator.hasNext()){
-                Sector sect = iterator.next();
-                sect.toString();
-            }
-            System.out.println();
             grid.add(arrayRow);
         }
         this.grid = grid;
