@@ -45,7 +45,7 @@ public class Map {
             ArrayList<Sector> arrayRow = new ArrayList<Sector>();
             for (int j = 0; j < getWidth(); j++) {
                 // sector!!!
-                Sector sector = new Sector(i + j + 2, j + 1, i + 1);
+                Sector sector = new Sector(i + j + 1, j + 1, i + 1);
                 arrayRow.add(sector);
             }
             grid.add(arrayRow);
