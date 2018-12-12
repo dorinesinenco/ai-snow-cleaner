@@ -53,6 +53,11 @@ public class Map {
         }
         this.grid = grid;
     }
+
+    public Sector getSector(Integer x,Integer y){
+        return  getGrid().get(y).get(x);
+    }
+
     @Override
     public String toString(){
         String out = "MAP\n\n";

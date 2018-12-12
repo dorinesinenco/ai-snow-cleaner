@@ -48,34 +48,27 @@ public class Robot {
 
     public void moveEst(){
         if (getY() < map.getWidth()) {
-            incY();
+            sector = map.getSector(getX() + 1,getY());
             sector.setTrace(new Trace(Trace.E));
         }
     }
     public void moveSouth(){
         if (getY() < map.getWidth()) {
-            incY();
-            sector.setTrace(new Trace(Trace.E));
+            sector = map.getSector(getX(),getY() + 1);
+            sector.setTrace(new Trace(Trace.S));
         }
     }
     public void moveNorth(){
-        if (getY() < 0) {
-            decY();
-            sector.setTrace(new Trace(Trace.E));
+        if (getY() > 0) {
+            sector = map.getSector(getX(),getY() + 1);
+            sector.setTrace(new Trace(Trace.N));
         }
     }
     public void moveWest(){
         if (getY() > 0) {
-            decY();
-            sector.setTrace(new Trace(Trace.E));
+            sector = map.getSector(getX(),getY() + 1);
+            sector.setTrace(new Trace(Trace.W));
         }
-    }
-    public void incY(){
-
-        sector.setY(getY() + 1);
-    }
-    public void decY(){
-        sector.setY(getY() - 1);
     }
     //constructor,toString(),sets,gets,
     //if,else W ; cant go out of map
