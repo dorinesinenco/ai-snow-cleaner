@@ -23,15 +23,15 @@ public  class Trace {
 
     @Override
     public String toString(){
-       String out = "\t";
-       switch(this.getDirection()){
-           case N: out = "^" ;break;
-           case E: out = "> " ;break;
-           case S: out = "v" ;break;
-           case W: out = "<" ;break;
-           case R: out = "R" ;break;
-       }
-       return " " + out;
+        String out = "\t";
+        switch(this.getDirection()){
+            case N: out = "^" ;break;
+            case E: out = ">" ;break;
+            case S: out = "v" ;break;
+            case W: out = "<" ;break;
+            case R: out = "R" ;break;
+        }
+        return " " + out;
     }
 }
 

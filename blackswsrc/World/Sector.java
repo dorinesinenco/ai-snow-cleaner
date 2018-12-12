@@ -76,7 +76,7 @@ public class Sector {
     }
 
     @java.lang.Override
-    public String toString() {
+    public String toString(){
         String str=" ";
         if(trace != null){
             str += trace;

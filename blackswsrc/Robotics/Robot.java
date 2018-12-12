@@ -5,66 +5,82 @@ import World.Sector;
 import World.Trace;
 
 import javax.sound.midi.Soundbank;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 
 public class Robot {
     private Sector location;// gde on nahoditsea
     private String name;
-    private int right = 1;
-    private  int up = 1;
+    private int right = 0;
+    private  int up = 0;
+    private Map map;
 
-    public Map ss = new Map();
-
-    public void moveNorth(){
-        if(up >=  0 && up <= 10){
-            up--;
-        }
-        ss.getGrid().get(up).get(right).setTrace(new Trace(Trace.N));
-    }
-    public void moveEast(){
-        if(right <= 10 && right >= 0){
-            right++;
-        }
-        ss.getGrid().get(up).get(right).setTrace(new Trace(Trace.E));
-
-    }
-    public void moveSouth(){
-        if(up >=  0 && up <= 10) {
-            up++;
-            ss.getGrid().get(up).get(right).setTrace(new Trace(Trace.S));
-        }
-    }
-
-    public void moveWest(){
-        if(right < 10 && right > 0){
-            right--;
-        }
-        ss.getGrid().get(up).get(right).setTrace(new Trace(Trace.W));
-    }
-
-    public void setLocation(Sector location){
+    public Robot(Sector location, String name,Map map) {
+        setMap(map);
         this.location = location;
-        right = location.getX();
-       up =  location.getY();
+        setRight(location.getY());
+        setUp(location.getX());
+
+    }
+
+    public void move(){
+        BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
+try {
+    while (true) {
+        String s = reader.readLine();
+        if (s.equalsIgnoreCase("right")) {
+            if (right < 10) ++right;
+            setRight(right);
+            map.getGrid().get(up).get(right).setTrace(new Trace(Trace.E));
+        } else if (s.equalsIgnoreCase("left")) {
+            if (right > 0) {
+                --right;
+                setRight(right);
+                map.getGrid().get(up).get(right).setTrace(new Trace(Trace.W));
+            }
+        } else if (s.equalsIgnoreCase("up")) {
+            if (up > 0) {
+                --up;
+                setUp(up);
+                map.getGrid().get(up).get(right).setTrace(new Trace(Trace.N));
+            }
+        } else if (s.equalsIgnoreCase("down")) {
+            if (up < 10) {
+                ++up;
+                setUp(up);
+                map.getGrid().get(up).get(right).setTrace(new Trace(Trace.S));
+            }
+        } else{
+            setLocationRobot();
+        }
+        if(s.equalsIgnoreCase("stop")) break;
+            }
+        }catch(Exception e){
+
+    }
+}
+
+    public void setUp(int up){
+       if(location.getY() <= 10 && location.getY() >= 0){
+           this.up = up;
+           location.setY(up);
+           map.getGrid().get(up).get(right);
+       }
+    }
+
+    public void setRight(int right) {
+        if(location.getX() <= 10 && location.getX() >= 0){
+            this.right = right;
+            location.setY(right);
+            map.getGrid().get(up).get(right);
+        }
     }
 
     public void setLocationRobot() {
-        if(right <= 10 && right >= 0  && up >= 0 && up <= 10  ) {
-            ss.getGrid().get(up).get(right).setTrace(new Trace(Trace.R));
-        }
+            map.getGrid().get(up).get(right).setTrace(new Trace(Trace.R));
     }
 
-    public void output(){
-            setLocationRobot();
-
-        System.out.println(ss);
+    public void setMap(Map map) {
+        this.map = map;
     }
-    //придумать конструкторт соответственно toString,sets/gets
-    // moveNorth(),moveEast(),moveSouth(),moveEast();
-    // sozdati odnogo robota через setter установить его в какойто сектор
-
-    // послать его на север север и тд
-    // после чего отобразить карту
-    // в процессе перехода он оставляет следы он должен не выходить за рамки карты
-
-
 }
