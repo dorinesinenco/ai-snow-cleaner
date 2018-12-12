@@ -5,79 +5,77 @@ import World.Trace;
 
 
 public class Robot {
-    private Sector location;
     private String name;
+    private Sector sector;
     private Map map;
 
-    public Robot(Integer id,Integer x,Integer y,String name,Map map){
-        location = new Sector(id,x,y);
-        setMap(map);
+    public Robot(String name){
         setName(name);
-        map.getGrid().
-                get(location.getX())
-                .get(location.getY())
-                .setTrace(new Trace(Trace.E));
     }
-    public Sector getLocation() {
-        return location;
+    public Robot(String name,Sector sector,Map map){
+        setName(name);
+        setSector(sector);
+        setMap(map);
     }
-    public Integer getX(){
-        return location.getX();
-    }
-    public Integer getY(){
-        return location.getY();
-    }
-    public void setLocation(Integer x,Integer y) {
-        this.location.setX(x);
-        this.location.setY(y);
-    }
+
     public String getName() {
         return name;
     }
     public void setName(String name) {
         this.name = name;
     }
-    public String toString(){
-        return map.toString();
+
+    public Sector getSector() {
+        return sector;
     }
-    public void moveEst(){
-        if (location.getY() != 9) {
-            location.setY(location.getY() + 1);
-            map.getGrid().
-                    get(location.getX())
-                    .get(location.getY())
-                    .setTrace(new Trace(Trace.E));
-        }
+    public void setSector(Sector sector){
+        this.sector = sector;
     }
-    public void moveSouth(){
-        if (location.getX() != 9) {
-            location.setX(location.getX() + 1);
-            map.getGrid()
-                    .get(location.getX())
-                    .get(location.getY())
-                    .setTrace(new Trace(Trace.S));
-        }
-    }
-    public void moveNorth(){
-        if (location.getX() != 0) {
-            location.setX(location.getX() - 1);
-            map.getGrid()
-                    .get(location.getX())
-                    .get(location.getY())
-                    .setTrace(new Trace(Trace.N));
-        }
-    }
-    public void moveWest(){
-        if (location.getY() != 0) {
-            location.setY(location.getY() - 1);
-            map.getGrid()
-                    .get(location.getX())
-                    .get(location.getY())
-                    .setTrace(new Trace(Trace.W));
-        }
+
+    public Map getMap() {
+        return map;
     }
     public void setMap(Map map) {
         this.map = map;
+    }
+
+    public Integer getX() {
+        return sector.getX();
+    }
+    public Integer getY() {
+        return sector.getY();
+    }
+
+    public void moveEst(){
+        if (getY() < map.getWidth()) {
+            incY();
+            sector.setTrace(new Trace(Trace.E));
+        }
+    }
+    public void moveSouth(){
+        if (getY() < map.getWidth()) {
+            incY();
+            sector.setTrace(new Trace(Trace.E));
+        }
+    }
+    public void moveNorth(){
+        if (getY() < 0) {
+            decY();
+            sector.setTrace(new Trace(Trace.E));
+        }
+    }
+    public void moveWest(){
+        if (getY() > 0) {
+            decY();
+            sector.setTrace(new Trace(Trace.E));
+        }
+    }
+    public void incY(){
+
+        sector.setY(getY() + 1);
+    }
+    public void decY(){
+        sector.setY(getY() - 1);
     }
     //constructor,toString(),sets,gets,
     //if,else W ; cant go out of map

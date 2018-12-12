@@ -13,13 +13,13 @@ public class Sector {
     private Integer y;
     Precipitation precipitation;
     Trace trace;
-    private byte sector_type;
+    private byte sectorType;
 
-    public Sector(Integer id, Integer x, Integer y) {
-        setId(id);
+    public Sector(Integer x, Integer y) {
+        setId(y*1000+x);
         setX(x);
         setY(y);
-        setSector_type(EMPTY);
+        setSectorType(EMPTY);
     }
 
     //Getters and Setters
@@ -51,12 +51,12 @@ public class Sector {
         this.y = y;
     }
 
-    public byte getSector_type() {
-        return sector_type;
+    public byte getSectorType() {
+        return sectorType;
     }
 
-    public void setSector_type(byte sector_type) {
-         this.sector_type = sector_type;
+    public void setSectorType(byte sectorType) {
+         this.sectorType = sectorType;
     }
 
     public Precipitation getPrecipitation() {
@@ -87,7 +87,7 @@ public class Sector {
         if (trace != null) {
             out += " " + trace + " ";
         }else {
-            switch (this.getSector_type()) {
+            switch (this.getSectorType()) {
                 case EMPTY:
                     out = " . ";
                     break;
