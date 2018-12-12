@@ -15,11 +15,11 @@ public class Sector {
     Trace trace;
     private byte sector_type;
 
-    public Sector(Integer id, Integer x, Integer y) {
-        setId(id);
+    public Sector(Integer x, Integer y) {
+        setId(y*1000+x);
         setX(x);
         setY(y);
-        setSector_type(EMPTY);
+        setSectorType(EMPTY);
     }
 
     //Getters and Setters
@@ -51,11 +51,11 @@ public class Sector {
         this.y = y;
     }
 
-    public byte getSector_type() {
+    public byte getSectorType() {
         return sector_type;
     }
 
-    public void setSector_type(byte sector_type) {
+    public void setSectorType(byte sector_type) {
          this.sector_type = sector_type;
     }
 
