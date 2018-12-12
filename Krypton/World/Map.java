@@ -43,11 +43,11 @@ public class Map {
     //setting Grid!!
     public void initGrid() {
         ArrayList<ArrayList<Sector>> grid = new ArrayList<ArrayList<Sector>>();
-        for (int i=0; i<getHeight(); i++) {
+        for (int y=0; y<getHeight(); y++) {
             ArrayList<Sector> arrayRow = new ArrayList<Sector>();
-            for (int j = 0; j < getWidth(); j++) {
+            for (int x = 0; x < getWidth(); x++) {
                 // sector!!!
-                Sector sector = new Sector(i + j + 2, j + 1, i + 1);
+                Sector sector = new Sector(x, y);
                 arrayRow.add(sector);
             }
             grid.add(arrayRow);
