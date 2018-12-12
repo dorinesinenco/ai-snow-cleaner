@@ -18,6 +18,7 @@ public class Sector {
         setX(x);
         setY(y);
         setSector_type(EMPTY);
+        setTrace(new Trace());
     }
 
     //Getters and Setters
@@ -63,6 +64,13 @@ public class Sector {
                 this.precipitation = new Rain();
                 break;
         }
+    }
+
+    public Trace getTrace() {
+        return trace;
+    }
+    public void setTrace(Trace trace) {
+        this.trace = trace;
     }
 
     //Static method to generate Ingetegers within specific interval
