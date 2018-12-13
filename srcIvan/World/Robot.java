@@ -1,21 +1,16 @@
-public class Robot{
-  
-  private Sector location; // gde on nahoditsa
+public class Robot {
   private String name;
-  public Map map;
+  private Sector sector;
+  private Map map;
 
-  public Robot(Sector location, String name, Map map) {
-    setLocation(location);
+  public Robot(String name){
     setName(name);
-    this.map=map;
   }
-
-  //Getters and Setters
-  public Sector getLocation() {
-    return location;
-  }
-  public void setLocation(Sector location) {
-    this.location = location;
+  public Robot(String name,Sector sector,Map map){
+    setName(name);
+    setSector(sector);
+    setMap(map);
+    setTrace(Trace.X);
   }
 
   public String getName() {
@@ -25,61 +20,74 @@ public class Robot{
     this.name = name;
   }
 
-  //Movement methods
-  public void moveSouth() {
-        Integer x = getLocation().getX();
-        Integer y = getLocation().getY();
-        if (y == 1) System.out.println("Boundary! You can't move to the North");
-        else {
-          this.setLocation(map.getGrid().get(y).get(x-1));
-          this.map.getGrid().get(y).get(x).getTrace().setDirection(Trace.S);
-        }
+  public Sector getSector() {
+    return sector;
   }
-  public void moveNorth() {
-    Integer x = getLocation().getX();
-    Integer y = getLocation().getY();
-    if (y == 10) System.out.println("Boundary! You can't move to the South");
-    else {
-      this.setLocation(map.getGrid().get(y-2).get(x-1));
-      this.map.getGrid().get(y).get(x).getTrace().setDirection(Trace.N);
+  public void setSector(Sector sector){
+    this.sector = sector;
+  }
+
+  public Map getMap() {
+    return map;
+  }
+  public void setMap(Map map) {
+    this.map = map;
+  }
+
+  public Integer getX() {
+    return sector.getX();
+  }
+  public Integer getY() {
+    return sector.getY();
+  }
+
+
+  //Set of Movements
+  public void moveEst(){
+    Boolean sectorWhereToGoIsBlocked = map.getSector(getX()+1, getY()).isBlocked();
+      if (getX() < map.getWidth() && !sectorWhereToGoIsBlocked) {
+      sector = map.getSector(getX()+1, getY());
+      setTrace(Trace.E);
+    } else {
+        sector = map.getSector(getX(), getY());
+        setTrace(Trace.B);
     }
   }
-  public void moveWest() {
-    Integer x = getLocation().getX();
-    Integer y = getLocation().getY();
-    if (x == 1) System.out.println("Boundary! You can't move to the West");
-    else {
-      this.setLocation(map.getGrid().get(y-1).get(x-2));
-      this.map.getGrid().get(y).get(x).getTrace().setDirection(Trace.W);
+  public void moveSouth(){
+      Boolean sectorWhereToGoIsBlocked = map.getSector(getX(), getY()+1).isBlocked();
+    if (getY() < map.getWidth() && !sectorWhereToGoIsBlocked) {
+      sector = map.getSector(getX(), getY()+1);
+      setTrace(Trace.S);
+    } else {
+        sector = map.getSector(getX(), getY());
+        setTrace(Trace.B);
     }
   }
-  public void moveEast() {
-    Integer x = this.getLocation().getX();
-    Integer y = this.getLocation().getY();
-    if (x == 10) System.out.println("Boundary! You can't move to the East");
-    else {
-      this.setLocation(map.getGrid().get(y-1).get(x));
-      this.map.getGrid().get(y).get(x).getTrace().setDirection(Trace.E);
+  public void moveNorth(){
+      Boolean sectorWhereToGoIsBlocked = map.getSector(getX(), getY()-1).isBlocked();
+    if (getY() < 0  && !sectorWhereToGoIsBlocked) {
+      sector = map.getSector(getX(), getY()-1);
+      setTrace(Trace.N);
+    } else {
+        sector = map.getSector(getX(), getY());
+        setTrace(Trace.B);
+    }
+  }
+  public void moveWest(){
+      Boolean sectorWhereToGoIsBlocked = map.getSector(getX()-1, getY()).isBlocked();
+    if (getX() > 0 && !sectorWhereToGoIsBlocked) {
+      sector = map.getSector(getX()-1, getY());
+      setTrace(Trace.W);
+    } else {
+        sector = map.getSector(getX(), getY());
+        setTrace(Trace.B);
     }
   }
 
-
-  @Override
-  public String toString() {
-    return "Robot{" +
-            "location=" + location +
-            ", name='" + name + '\'' +
-            '}';
+  public void setTrace(byte trace) {
+    sector.setTrace(new Trace(trace));
   }
 
+  //USE ISBLOCKED IN ORDER TO STOP ROBOT'S MOVEMENTS
 
-  // constructor,toString(),sets/gets
-  
-  // moveNorth(),moveEast(),moveSouth(),moveWest()
-  // if/ BOUNDARIES!!!!
-  
-  // 1) sozdati 1 robota
-  // 2) set -> sector
-  // 3) N N N E E S S W
-  // 4) print map
 }

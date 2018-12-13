@@ -1,10 +1,11 @@
 import java.util.Random;
 
 public class Sector {
-    final public byte EMPTY=0;
-    final public byte ROAD=1;
-    final public byte BUILDING=2;
-    final public byte LAND=3;
+
+    final static public byte EMPTY=0;
+    final static public byte ROAD=1;
+    final static public byte BUILDING=2;
+    final static public byte LAND=3;
 
     private Integer id;
     private Integer x;
@@ -13,15 +14,21 @@ public class Sector {
     Trace trace;
     private byte sector_type;
 
-    public Sector(Integer id, Integer x, Integer y) {
-        setId(id);
+    public Sector(Integer x, Integer y) {
+        setId(y*1000+x);
         setX(x);
         setY(y);
-        setSector_type(EMPTY);
-        setTrace(new Trace());
+        setSectorType(EMPTY);
     }
 
     //Getters and Setters
+    public Trace getTrace() {
+        return trace;
+    }
+
+    public void setTrace(Trace trace) {
+        this.trace = trace;
+    }
     public Integer getId() {
         return id;
     }
@@ -43,12 +50,17 @@ public class Sector {
         this.y = y;
     }
 
-    public byte getSector_type() {
+    public byte getSectorType() {
         return sector_type;
     }
 
-    public void setSector_type(byte sector_type) {
-         this.sector_type = sector_type;
+    public void setSectorType(byte sector_type) {
+        this.sector_type = sector_type;
+    }
+
+
+    public Boolean isBlocked() {
+        return sector_type == BUILDING;
     }
 
     public Precipitation getPrecipitation() {
@@ -66,13 +78,6 @@ public class Sector {
         }
     }
 
-    public Trace getTrace() {
-        return trace;
-    }
-    public void setTrace(Trace trace) {
-        this.trace = trace;
-    }
-
     //Static method to generate Ingetegers within specific interval
     public static int randInt(int min, int max) {
         Random rand = new Random();
@@ -80,16 +85,16 @@ public class Sector {
         return randNum;
     }
 
-    @java.lang.Override
+    @Override
     public String toString() {
-        String out="";
-        if(trace!=null){
+        String out = "";
+        if (trace != null) {
             out += " " + trace + " ";
-        }else{
-            switch (this.getSector_type()) {
+        }else {
+            switch (this.getSectorType()) {
                 case EMPTY:
                     out = " . ";
-                    break;                
+                    break;
                 case ROAD:
                     out = " + ";
                     break;

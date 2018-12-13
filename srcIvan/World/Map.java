@@ -39,29 +39,39 @@ public class Map {
         return grid;
     }
 
+    //setting Grid!!
     public void initGrid() {
         ArrayList<ArrayList<Sector>> grid = new ArrayList<ArrayList<Sector>>();
-        for (int i=0; i<getHeight(); i++) {
+        for (int y=0; y<getHeight(); y++) {
             ArrayList<Sector> arrayRow = new ArrayList<Sector>();
-            for (int j = 0; j < getWidth(); j++) {
+            for (int x = 0; x < getWidth(); x++) {
                 // sector!!!
-                Sector sector = new Sector(i + j + 1, j + 1, i + 1);
+                Sector sector = new Sector(x, y);
                 arrayRow.add(sector);
             }
             grid.add(arrayRow);
         }
         this.grid = grid;
     }
-    
+
+    public Sector getSector(Integer x, Integer y) {
+        return getGrid().get(y).get(x);
+    }
+
     @Override
     public String toString(){
-        String out = "MAP\n\n";
-        for(ArrayList<Sector> row: grid){
-            for(Sector sector: row){
-                out += sector;
+        //String out = "MAP\n\n";
+        String out = "\n";
+        Integer i=1, j=1;
+        System.out.print("   ");
+        for (ArrayList<Sector> row: grid){
+            System.out.print("[" +(i++)+ "]");
+            out += "[" +(j++)+ "]";
+            for (Sector sector: row){
+                out +=  sector;
             }
             out += "\n";
-        }    
+        }
         return out;
     }
 }

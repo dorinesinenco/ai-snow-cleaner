@@ -1,14 +1,16 @@
 public class Trace {
 
+    final public static byte X = 0;     //Start - initial position of Robot
+    final public static byte B = 5;     //Block - in case if Robot tries to access blocked Sector (ex. with Building)
+
     final public static byte N = 1;
     final public static byte E = 2;
     final public static byte S = 3;
     final public static byte W = 4;
+
+
     private byte direction;
 
-    public Trace() {
-
-    }
     public Trace(byte direction) {
         setDirection(direction);
     }
@@ -23,8 +25,17 @@ public class Trace {
 
     @Override
     public String toString() {
-        String out = ".";
+        String out = "";
         switch (getDirection()) {
+
+            case X:
+                out = "S";
+                break;
+            case B:
+                out = "X";
+                break;
+
+            //Indicators of movements
             case N:
                 out = "^";
                 break;

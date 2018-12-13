@@ -23,7 +23,7 @@ public class Sector {
         setId(id);
         setX(x);
         setY(y);
-        setSector_type(EMPTY);
+        setSectorType(EMPTY);
     }
 
     public void setTrace(Trace trace) {
@@ -76,12 +76,12 @@ public class Sector {
     }
 
     @java.lang.Override
-    public String toString() {
+    public String toString(){
         String str=" ";
         if(trace != null){
             str += trace;
         }else{
-            switch (this.getSector_type()) {
+            switch (this.getSectorType()) {
                 case EMPTY:
                     str = " . ";
                     break;
