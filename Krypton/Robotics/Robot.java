@@ -16,8 +16,8 @@ public class Robot {
         setName(name);
         setSector(sector);
         setMap(map);
+        setTrace(Trace.X);
     }
-
     public String getName() {
         return name;
     }
@@ -25,6 +25,9 @@ public class Robot {
         this.name = name;
     }
 
+    public void setTrace(byte trace){
+        sector.setTrace(new Trace(trace));
+    }
     public Sector getSector() {
         return sector;
     }
@@ -47,27 +50,43 @@ public class Robot {
     }
 
     public void moveEst(){
-        if (getY() < map.getWidth()) {
+        Boolean blocked = map.getSector(getX() + 1, getY()).isBuilding();
+        if (getX() < map.getWidth() && !blocked) {
             sector = map.getSector(getX() + 1,getY());
-            sector.setTrace(new Trace(Trace.E));
+            setTrace(Trace.E);
+        }else {
+            sector = map.getSector(getX(), getY());
+            setTrace(Trace.X);
         }
     }
     public void moveSouth(){
-        if (getY() < map.getWidth()) {
+        Boolean blocked = map.getSector(getX(), getY() + 1).isBuilding();
+        if (getX() < map.getWidth() && !blocked) {
             sector = map.getSector(getX(),getY() + 1);
-            sector.setTrace(new Trace(Trace.S));
+            setTrace(Trace.S);
+        }else {
+            sector = map.getSector(getX(), getY());
+            setTrace(Trace.X);
         }
     }
     public void moveNorth(){
+        Boolean blocked = map.getSector(getX(), getY() - 1).isBuilding();
         if (getY() > 0) {
-            sector = map.getSector(getX(),getY() + 1);
-            sector.setTrace(new Trace(Trace.N));
+            sector = map.getSector(getX(),getY() - 1);
+            setTrace(Trace.N);
+        }else {
+            sector = map.getSector(getX(), getY());
+            setTrace(Trace.X);
         }
     }
     public void moveWest(){
+        Boolean blocked = map.getSector(getX() - 1, getY()).isBuilding();
         if (getY() > 0) {
-            sector = map.getSector(getX(),getY() + 1);
-            sector.setTrace(new Trace(Trace.W));
+            sector = map.getSector(getX() - 1,getY());
+            setTrace(Trace.W);
+        }else {
+            sector = map.getSector(getX(), getY());
+            setTrace(Trace.X);
         }
     }
     //constructor,toString(),sets,gets,
