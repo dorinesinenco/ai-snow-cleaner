@@ -4,7 +4,7 @@ import World.Sector;
 import World.Trace;
 
 
-public class CleanerRobot {
+public class CleanerRobot extends RobotBase{
     private String name;
     private Sector sector;
     private Map map;
@@ -12,7 +12,7 @@ public class CleanerRobot {
     public CleanerRobot(String name){
         setName(name);
     }
-    public CleanerRobot(String name,Sector sector,Map map){
+    public CleanerRobot(String name, Sector sector, Map map){
         setName(name);
         setSector(sector);
         setMap(map);
@@ -70,9 +70,9 @@ public class CleanerRobot {
         }
     }
     public void moveNorth(){
-        Boolean blocked = map.getSector(getX(), getY() - 1).isBuilding();
+        Boolean blocked = map.getSector(getX(), getY() + 1).isBuilding();
         if (getY() > 0) {
-            sector = map.getSector(getX(),getY() - 1);
+            sector = map.getSector(getX(),getY() + 1);
             setTrace(Trace.N);
         }else {
             sector = map.getSector(getX(), getY());

@@ -3,10 +3,10 @@ package World;
 import java.util.Random;
 
 public class Sector {
-    final public byte EMPTY=0;
-    final public byte ROAD=1;
-    final public byte BUILDING=2;
-    final public byte LAND=3;
+    final public static byte EMPTY=0;
+    final public static byte ROAD=1;
+    final public static byte BUILDING=2;
+    final public static byte LAND = 3;
 
     private Integer id;
     private Integer x;
@@ -20,6 +20,10 @@ public class Sector {
         setX(x);
         setY(y);
         setSectorType(EMPTY);
+    }
+
+    public Boolean isBuilding(){
+        return sectorType == BUILDING;
     }
 
     //Getters and Setters
@@ -89,7 +93,7 @@ public class Sector {
         }else {
             switch (this.getSectorType()) {
                 case EMPTY:
-                    out = " . ";
+                    out = " ~ ";
                     break;
                 case ROAD:
                     out = " + ";
@@ -98,7 +102,7 @@ public class Sector {
                     out = " # ";
                     break;
                 case LAND:
-                    out = " ~ ";
+                    out = " . ";
                     break;
             }
         }

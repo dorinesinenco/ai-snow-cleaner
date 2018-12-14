@@ -21,7 +21,7 @@ public class Main {
         rg.moveWest();
         rg.output();
 
-   //     Robot r = new Robot();
+   //     CleanerRobot r = new CleanerRobot();
    // r.moveNorth();
     }
 }

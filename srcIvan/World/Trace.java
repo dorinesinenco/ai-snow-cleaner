@@ -1,7 +1,7 @@
 public class Trace {
 
-    final public static byte X = 0;     //Start - initial position of Robot
-    final public static byte B = 5;     //Block - in case if Robot tries to access blocked Sector (ex. with Building)
+    final public static byte X = 0;     //Start - initial position of CleanerRobot
+    final public static byte B = 5;     //Block - in case if CleanerRobot tries to access blocked Sector (ex. with Building)
 
     final public static byte N = 1;
     final public static byte E = 2;

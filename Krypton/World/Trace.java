@@ -1,6 +1,8 @@
 package World;
 
-public class Trace {
+public class Trace{
+    static final public byte X = 0; //start
+
     static final public byte N = 1;
     static final public byte E = 2;
     static final public byte S = 3;
@@ -21,6 +23,7 @@ public class Trace {
     public String toString(){
         String out = "";
         switch (getDirection()){
+            case X : out = "X"; break;
             case N : out = "^"; break;
             case S : out = "v"; break;
             case W : out = "<"; break;
