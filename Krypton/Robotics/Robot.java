@@ -4,15 +4,15 @@ import World.Sector;
 import World.Trace;
 
 
-public class Robot {
+public class CleanerRobot {
     private String name;
     private Sector sector;
     private Map map;
 
-    public Robot(String name){
+    public CleanerRobot(String name){
         setName(name);
     }
-    public Robot(String name,Sector sector,Map map){
+    public CleanerRobot(String name,Sector sector,Map map){
         setName(name);
         setSector(sector);
         setMap(map);
