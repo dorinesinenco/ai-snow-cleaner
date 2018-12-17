@@ -25,6 +25,9 @@ public class Sector {
     public Boolean isBuilding(){
         return sectorType == BUILDING;
     }
+    public Boolean isLand(){
+        return sectorType == LAND;
+    }
 
     //Getters and Setters
     public Trace getTrace() {

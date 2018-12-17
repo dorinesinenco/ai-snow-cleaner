@@ -7,7 +7,7 @@ import World.Trace;
 public class RobotBase {
     private String name;
     private Sector sector;
-    private Map map;
+    protected Map map;
 
     RobotBase(){
 
@@ -19,7 +19,7 @@ public class RobotBase {
         setName(name);
         setSector(sector);
         setMap(map);
-        setTrace(Trace.X);
+        setTrace(Trace.R);
     }
     public String getName() {
         return name;
@@ -59,7 +59,7 @@ public class RobotBase {
             setTrace(Trace.E);
         }else {
             sector = map.getSector(getX(), getY());
-            setTrace(Trace.X);
+            setTrace(Trace.R);
         }
     }
     public void moveSouth(){
@@ -69,7 +69,7 @@ public class RobotBase {
             setTrace(Trace.S);
         }else {
             sector = map.getSector(getX(), getY());
-            setTrace(Trace.X);
+            setTrace(Trace.R);
         }
     }
     public void moveNorth(){
@@ -79,7 +79,7 @@ public class RobotBase {
             setTrace(Trace.N);
         }else {
             sector = map.getSector(getX(), getY());
-            setTrace(Trace.X);
+            setTrace(Trace.R);
         }
     }
     public void moveWest(){
@@ -89,8 +89,16 @@ public class RobotBase {
             setTrace(Trace.W);
         }else {
             sector = map.getSector(getX(), getY());
-            setTrace(Trace.X);
+            setTrace(Trace.R);
         }
+    }
+    public Integer distanceTo(Sector targetSector){
+        return (int)Math.floor(
+                Math.sqrt(
+                        Math.pow((targetSector.getX() - getX()),2) +
+                                Math.pow((targetSector.getY() - getY()),2)
+        ) /1.2
+        );
     }
     //constructor,toString(),sets,gets,
     //if,else W ; cant go out of map

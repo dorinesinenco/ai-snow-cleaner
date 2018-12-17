@@ -8,6 +8,7 @@ public class Drone extends RobotBase{
     private String name;
     private Sector sector;
     private Map map;
+    final static byte ViewRadius = 3;
 
     public Drone(String name) {
         setName(name);
@@ -17,7 +18,7 @@ public class Drone extends RobotBase{
         setName(name);
         setSector(sector);
         setMap(map);
-        setTrace(Trace.X);
+        setTrace(Trace.D);
     }
 
     public String getName() {
@@ -51,11 +52,31 @@ public class Drone extends RobotBase{
     public Integer getX() {
         return sector.getX();
     }
-
     public Integer getY() {
         return sector.getY();
     }
+    public void findBestPath(Sector target_sector){
 
+    }
+    public Sector findNearestSector(){
+        return null;
+    }
+    public Sector lookAround(){
+        Integer X = getX();
+        for (Integer dx = X ; dx < X + ViewRadius;dx++){
+            if (map.getSector(dx,getY()).isLand()){
+                return map.getSector(dx,getY());
+            }
+        }return null;
+    }
+//    public Sector lookWest(){
+//        Integer X = getX();
+//        for (Integer dx = X ; dx > X - ViewRadius;dx--){
+//            if (map.getSector(dx,getY()).isLand()){
+//                return map.getSector(dx,getY());
+//            }
+//        }return null;
+//    }
     public void moveEst() {
         Boolean blocked = map.getSector(getX() + 1, getY()).isBuilding();
         if (getX() < map.getWidth() && !blocked) {
@@ -63,7 +84,7 @@ public class Drone extends RobotBase{
             setTrace(Trace.E);
         } else {
             sector = map.getSector(getX(), getY());
-            setTrace(Trace.X);
+            setTrace(Trace.D);
         }
     }
     public void moveSouth() {
@@ -73,7 +94,7 @@ public class Drone extends RobotBase{
             setTrace(Trace.S);
         } else {
             sector = map.getSector(getX(), getY());
-            setTrace(Trace.X);
+            setTrace(Trace.D);
         }
     }
     public void moveNorth() {
@@ -83,7 +104,7 @@ public class Drone extends RobotBase{
             setTrace(Trace.N);
         } else {
             sector = map.getSector(getX(), getY());
-            setTrace(Trace.X);
+            setTrace(Trace.D);
         }
     }
 
@@ -94,7 +115,7 @@ public class Drone extends RobotBase{
             setTrace(Trace.W);
         } else {
             sector = map.getSector(getX(), getY());
-            setTrace(Trace.X);
+            setTrace(Trace.D);
         }
     }
 }

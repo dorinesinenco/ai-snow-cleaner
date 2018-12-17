@@ -16,7 +16,7 @@ public class CleanerRobot extends RobotBase{
         setName(name);
         setSector(sector);
         setMap(map);
-        setTrace(Trace.X);
+        setTrace(Trace.R);
     }
     public String getName() {
         return name;
@@ -56,7 +56,7 @@ public class CleanerRobot extends RobotBase{
             setTrace(Trace.E);
         }else {
             sector = map.getSector(getX(), getY());
-            setTrace(Trace.X);
+            setTrace(Trace.R);
         }
     }
     public void moveSouth(){
@@ -66,7 +66,7 @@ public class CleanerRobot extends RobotBase{
             setTrace(Trace.S);
         }else {
             sector = map.getSector(getX(), getY());
-            setTrace(Trace.X);
+            setTrace(Trace.R);
         }
     }
     public void moveNorth(){
@@ -76,7 +76,7 @@ public class CleanerRobot extends RobotBase{
             setTrace(Trace.N);
         }else {
             sector = map.getSector(getX(), getY());
-            setTrace(Trace.X);
+            setTrace(Trace.R);
         }
     }
     public void moveWest(){
@@ -86,7 +86,7 @@ public class CleanerRobot extends RobotBase{
             setTrace(Trace.W);
         }else {
             sector = map.getSector(getX(), getY());
-            setTrace(Trace.X);
+            setTrace(Trace.R);
         }
     }
     //constructor,toString(),sets,gets,
