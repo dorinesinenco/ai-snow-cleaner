@@ -1,3 +1,40 @@
+# update
+создать robotics\Camera interface;
+
+interface Camera {
+
+ public void look();
+ 
+ }
+ 
+ вставить алго "просмотра по радиусу" каждый в свой класс
+ 
+ class [Authorname]Camera implements Camera{
+ 
+ 
+ }
+ 
+ привязать класс к Drone
+ 
+ class Drone {
+   + private Camera camera;
+   
+   + setter/getter
+   
+   
+ протестировать каждую камеру подставляя необходимые изменения так
+ чтобы она отмечала как-то ( напр "o" ) все те ячейки куда она смотрела
+ 
+ т е м main()
+ 
+   drone.setCamera(new IvanCamera());
+   drone.look();
+   
+   
+   drone.setCamera(new MaxCamera());
+   drone.look();
+
+
 # ai-snow-cleaner
 
 ## CLASSES 
