@@ -1,18 +1,19 @@
+
 package Robotics;
 import World.Map;
 import World.Sector;
 import World.Trace;
 
 
-public class CleanerRobot {
+public class Drone {
     private String name;
     private Sector sector;
     private Map map;
 
-    public CleanerRobot(String name){
+    public Drone(String name){
         setName(name);
     }
-    public CleanerRobot(String name,Sector sector,Map map){
+    public Drone(String name,Sector sector,Map map){
         setName(name);
         setSector(sector);
         setMap(map);
