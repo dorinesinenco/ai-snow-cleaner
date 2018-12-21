@@ -136,3 +136,25 @@ public class App {
         printArray( array );
     }
 }
+
+
+
+    @Override
+    public ArrayList look(Map map, Sector sector){
+        ArrayList<Sector> found = new ArrayList<Sector>();
+        int radius = 3;
+
+        for (int i=0; i < (radius*2+1); i++)
+            map.getSector(sector.getX() - radius + i,sector.getY() - radius).setSectorType(Sector.BUILDING);
+
+        for (int j=0; j < (radius*2+1); j++)
+            map.getSector(sector.getX() + radius,sector.getY() - radius + j).setSectorType(Sector.BUILDING);
+
+        for (int i=0; i < (radius*2+1); i++)
+            map.getSector(sector.getX() + radius - i,sector.getY() + radius).setSectorType(Sector.BUILDING);
+
+        for (int j=0; j < (radius*2+1); j++)
+            map.getSector(sector.getX() - radius,sector.getY() + radius - j).setSectorType(Sector.BUILDING);
+
+        return found;
+    }
