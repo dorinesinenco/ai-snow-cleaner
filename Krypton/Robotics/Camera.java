@@ -17,16 +17,14 @@ public class IvanCamera implements Camera{
             map.getSector(sector.getY() - radius + i,sector.getX() - radius).setSectorType(Sector.BUILDING);
 
         for (int j=0; j < (radius*2+1); j++)
-            map.getSector(sector.getY() - radius + i,sector.getX() - radius).setSectorType(Sector.BUILDING);
-            array[y_position + radius][x_position - radius + j] = value;
+            map.getSector(sector.getY() + radius,sector.getX() - radius + j).setSectorType(Sector.BUILDING);
 
         for (int i=0; i < (radius*2+1); i++)
-            map.getSector(sector.getY() - radius + i,sector.getX() - radius).setSectorType(Sector.BUILDING);
-            array[y_position + radius - i][x_position + radius] = value;
+            map.getSector(sector.getY() - radius - i,sector.getX() - radius).setSectorType(Sector.BUILDING);
 
         for (int j=0; j < (radius*2+1); j++)
-            map.getSector(sector.getY() - radius + i,sector.getX() - radius).setSectorType(Sector.BUILDING);
-            array[y_position - radius][x_position + radius - j] = value;
+            map.getSector(sector.getY() + radius,sector.getX() - radius - j).setSectorType(Sector.BUILDING);
+           
 
         return found;
     }
